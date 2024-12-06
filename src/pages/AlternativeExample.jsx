@@ -8,10 +8,10 @@ export default function AlternativeExample() {
   useEffect(() => {
     const container = containerRef.current;
 
-    if (!container) return;
-
     // Scene setup
     const scene = new THREE.Scene();
+
+    // Camera Setup
     const camera = new THREE.PerspectiveCamera(
       75,
       container.clientWidth / container.clientHeight,
@@ -20,6 +20,7 @@ export default function AlternativeExample() {
     );
     camera.position.z = 5;
 
+    // Renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setClearColor("#233143");
     renderer.setSize(container.clientWidth, container.clientHeight);
@@ -57,7 +58,7 @@ export default function AlternativeExample() {
 
     // Lights
     const lights = [];
-    // const lightHelpers = [];
+
     const lightValues = [
       { colour: 0x9714b8, intensity: 260, dist: 12, x: 1, y: 0, z: 8 },
       { colour: 0x6e1bb3, intensity: 520, dist: 12, x: -2, y: 1, z: -8 },
@@ -79,7 +80,8 @@ export default function AlternativeExample() {
       );
       scene.add(lights[i]);
 
-      // New Code: Add light helpers for each light
+      // Add light helpers for each light - use in development - comment-out when deployed
+      // const lightHelpers = [];
       // lightHelpers[i] = new THREE.PointLightHelper(lights[i], 0.7);
       // scene.add(lightHelpers[i]);
     }
@@ -89,7 +91,7 @@ export default function AlternativeExample() {
     controls.rotateSpeed = 4;
     controls.dynamicDampingFactor = 0.15;
 
-    // Axes Helper
+    // Axes Helper - use in development - comment-out when deployed
     // const axesHelper = new THREE.AxesHelper(5);
     // scene.add(axesHelper); // X == red, Y == green, Z == blue
 
@@ -151,7 +153,7 @@ export default function AlternativeExample() {
     };
     rendering();
 
-    // Cleanup
+    // Cleanup - not necessary but good practice
     return () => {
       window.removeEventListener("resize", handleResize);
       container.removeChild(renderer.domElement); // Remove canvas

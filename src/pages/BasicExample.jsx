@@ -7,8 +7,6 @@ export default function BasicExample() {
   useEffect(() => {
     const container = containerRef.current;
 
-    if (!container) return;
-
     // Scene setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
@@ -40,7 +38,7 @@ export default function BasicExample() {
 
     animate();
 
-    // Cleanup
+    // Cleanup - not necessary but good practice
     return () => {
       container.removeChild(renderer.domElement); // Remove canvas on unmount
     };

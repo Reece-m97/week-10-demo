@@ -9,8 +9,6 @@ export default function UploadModal() {
   useEffect(() => {
     const container = containerRef.current;
 
-    if (!container) return;
-
     // Scene
     const scene = new THREE.Scene();
 
@@ -48,7 +46,7 @@ export default function UploadModal() {
       (gltf) => {
         const model = gltf.scene;
         model.scale.set(0.1, 0.1, 0.1); // Adjust scale as needed
-        model.position.set(-90, 0, -65); // Center the model in the scene
+        model.position.set(-90, 0, -65); // Move the model in the scene
         scene.add(model);
       },
       undefined,
@@ -57,7 +55,7 @@ export default function UploadModal() {
       }
     );
 
-    // Axes Helper
+    // Axes Helper - use in development - comment-out when deployed
     const axesHelper = new THREE.AxesHelper(5);
     scene.add(axesHelper); // X == red, Y == green, Z == blue
 
@@ -77,7 +75,7 @@ export default function UploadModal() {
     };
     animate();
 
-    // Cleanup
+    // Cleanup - not necessary but good practice
     return () => {
       window.removeEventListener("resize", handleResize);
       controls.dispose();
