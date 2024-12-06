@@ -21,19 +21,23 @@ export default function BasicExample() {
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement); // Append canvas to the container
 
+    // Create cube
     const geometry = new THREE.BoxGeometry();
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
     const cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
 
+    // Position camera
     camera.position.z = 5;
 
+    // Rotate cube
     const animate = () => {
       cube.rotation.x += 0.01;
       cube.rotation.y += 0.01;
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
     };
+
     animate();
 
     // Cleanup
